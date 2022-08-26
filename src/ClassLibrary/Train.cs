@@ -3,7 +3,9 @@
 //     Copyright (c) Programación II. Derechos reservados.
 // </copyright>
 //--------------------------------------------------------------------------------
-
+//Encontrarás una clase Train, crea una variable de clase que te permitirá acumular 
+//la cantidad de instancias creadas. Una 
+//variable de clase la definimos, por ejemplo de la siguiente forma (presta atención al modificador static):
 using System;
 
 namespace ClassLibrary
@@ -13,7 +15,7 @@ namespace ClassLibrary
     /// </summary>
     public class Train
     {
-        /// <summary>
+        /// <summary>cd
         /// Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
         /// </summary>
         /// <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
@@ -56,5 +58,30 @@ namespace ClassLibrary
             Console.Write("The engines are already stopped");
             return this.IsEngineStarted;
         }
+        public static int Count = 0;
+        public string Identificador { get; set;}
+        public static int AddCounter(){
+            return ++Count;
+        }
+         public static int returnCounter(){
+            return Count;
+        }
+        public Train(string identificador)
+        {
+        this.Identificador = identificador;
+        AddCounter();
+        }
+        
+         ~Train()
+        {
+            --Count;
+            Console.WriteLine("Destructor se ejecutó");
+        } 
+        public override string ToString(){
+            return  $"Identificador {this.Identificador}\nContador de instancias {returnCounter()}";
+        }
+
+
+
     }
 }
